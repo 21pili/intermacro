@@ -1,0 +1,133 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{titling}
+\usepackage{fancyhdr}
+\usepackage{lipsum}
+\usepackage{parskip}
+\usepackage{forest}
+\usepackage{tikz}
+\usepackage{stmaryrd}
+
+\geometry{top=1in, bottom=1in, left=1in, right=1in}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Pierre Pili}
+\lhead{International Macroeconomics - Homework 1}
+\cfoot{\thepage}
+
+\title{INTERNATIONAL MACRO - HOMEWORK 1}
+\author{Pierre Pili}
+\date{\today}
+
+\begin{document}
+
+\begin{titlingpage}
+\maketitle
+\end{titlingpage}
+
+\tableofcontents
+
+\newpage
+\section{A 3-Period Model}
+\subsection{}
+One can derive the following budget constraints from a 3-period small open endowment economy :
+\begin{alignat}{2}
+    C_1 + B_1 - B_0 &= Y_1 + r_0 B_0  \quad&\\
+    C_2 + B_2 - B_1 &= Y_2 + r^* B_1  \quad&\\
+    C_3 + B_3 - B_2 &= Y_3 + r^* B_2  \quad&
+  \end{alignat}
+Where $B_t$ and $Y_t$ are respectively the asset position and the endowment of households at period $t$.
+\subsection{}
+In a 3-period model, agents will not accumulate bonds in period three as they will not make it to the next period. They will rather maximize their consumption. Which implies $B_3 = 0$
+\subsection{}
+Rewriting (3) with the transversality condition :
+\begin{alignat}{2}
+    B_2 &= \frac{C_3 - Y_3}{1+r^*}  \quad&
+\end{alignat}
+Inserting the expression of $B_2$ in (2) :
+\begin{alignat}{2}
+    C_2 + \frac{C_3 - Y_3}{1+r^*} &= Y_2 + (1+r^*)B_1  \quad&
+\end{alignat}
+Which implies the following expression for $B_1$ :
+\begin{alignat}{2}
+    B_1 &= \frac{C_2 - Y_2}{1+r^*} + \frac{C_3 - Y_3}{(1+r^*)^2}  \quad&
+\end{alignat}
+Inserting the expression of $B_1$ in (1) :
+\begin{alignat}{2}
+    C_1 + \frac{C_2 - Y_2}{1+r^*} + \frac{C_3 - Y_3}{(1+r^*)^2} &= Y_1 + (1+r_0)B_0  \quad&
+\end{alignat}
+Rearranging (7) :
+\begin{alignat}{2}
+    C_1 + \frac{C_2}{1+r^*} + \frac{C_3}{(1+r^*)^2} &= (1+r_0)B_0 + Y_1 + \frac{Y_2}{1+r^*} + \frac{Y_3}{(1+r^*)^2} \equiv W \quad&
+\end{alignat}
+We define $W$ the intertemporal wealth of households. $W$ is exogenous in this model since $Y_t, r_0, r^*$ and $B_0$ are exogenous.
+\subsection{}
+Households want to maximize their lifetime utiliy subject to the IBC. We thus form the lagrangian of this maximization problem :
+\begin{alignat}{2}
+    \mathcal{L}(C,\lambda) &= U(C) + \lambda(W - \sum_t \frac{C_t}{(1+r^*)^{t-1}}) \quad&
+\end{alignat}
+Where $C$ is the vector of consumption $(C_1, C_2, C_3)$, $U$ the lifetime utility function, and where $\displaystyle\sum_t$ denotes the sum over all periods.\newline
+The first order conditions imply, for $t \in$ $\{ 1, 2, 3\}$ :
+\begin{alignat*}{2}
+    \frac{\partial\mathcal{L}}{\partial C_t} (C,\lambda) = 0 &\iff C_t = \frac{(1+r^*)^{t-1}}{\lambda} \quad&
+\end{alignat*}
+Inserting the expressions for $C_t$ in the IBC implies :
+\begin{alignat}{2}
+    W = \sum_t \frac{1}{\lambda} &\iff \lambda = \frac{3}{W}\quad&
+\end{alignat}
+Which yields for $t \in$ $\{ 1, 2, 3\}$ :
+\begin{alignat}{2}
+    C_t &= \frac{(1+r^*)^{t-1}}{3}W\quad&
+\end{alignat}
+This result is similar to the 2-period economy with no discount factor for consumption in the lifetime utility.\newline
+We can now easily compute the trade balance and the current account for each period :
+\begin{alignat*}{2}
+    TB_t &= Y_t - C_t\quad&\\
+    &= Y_t - \frac{(1+r^*)^{t-1}}{3} \left[ (1+r_0)B_0 + Y_1 + \frac{Y_2}{1+r^*} + \frac{Y_3}{(1+r^*)^2} \right]\quad&\\
+    &= \frac{(1+r^*)^{t-1}}{3} \left[\frac{3}{(1+r^*)^{t-1}}Y_t - (1+r_0)B_0 - Y_1 - \frac{Y_2}{1+r^*} - \frac{Y_3}{(1+r^*)^2} \right]\quad&
+\end{alignat*}
+Thus :
+\begin{alignat}{2}
+    TB_1 &= \frac{1}{3} \left[2 Y_1 -(1+r_0)B_0 - \frac{Y_2}{1+r^*} - \frac{Y_3}{(1+r^*)^2} \right]\quad&\quad&\\
+    TB_2 &= \frac{(1+r^*)}{3} \left[\frac{2Y_2}{1+r^*} - (1+r_0)B_0 - Y_1 - \frac{Y_3}{(1+r^*)^2} \right]\quad&\\
+    TB_3 &= \frac{(1+r^*)^2}{3} \left[\frac{2Y_3}{(1+r^*)^2} - (1+r_0)B_0 - Y_1 - \frac{Y_2}{(1+r^*)} \right]\quad&
+\end{alignat}
+\subsection{}
+A positive endowment shock $\Delta Y_1$ will have a postive impact on the trade balance and on consumption in period 1, indeed, derivating (12) :
+\begin{alignat}{2}
+    \Delta TB_1 &= \Delta CA_1 = \frac{2}{3} \Delta Y_1  > 0 \quad&
+\end{alignat}
+Which implies,
+\begin{alignat}{2}
+    \Delta C_1 &= \frac{1}{3} \Delta Y_1  > 0 \quad&
+\end{alignat}
+\subsection{}
+In a similar way, derivating (12) :
+\begin{alignat}{2}
+    \Delta TB_1 &= \Delta CA_1 = \Delta Y \left[2 - \frac{1}{1+r^*} - \frac{1}{(1+r^*)^2} \right] = \Delta Y \left[3 r^* + o(r^*)\right]\quad&
+\end{alignat}
+The trade balance in positively impacted by a permanent endowment shock but with an order 1 with respect to $r^*$. The impact will be very small.\newline
+\begin{alignat*}{2}
+    \Delta C_1 &= \Delta Y - \Delta TB_1 \quad&\\
+    &= \Delta Y \left[1 - 3 r^* + o(r^*)\right]\quad&\\
+\end{alignat*}
+A permanent shock will increase consumption by a one-one coefficient at the first order with respect to $r^*$. 
+\subsection{}
+The way we wrote our results very much suggests the general form of consumption in a N-period economy.
+In that case the intertemporal IBC writes :
+\begin{alignat}{2}
+    \sum_{t} \frac{C_t}{(1+r^*)^{(t-1)}} &= (1+r_0)B_0 + \sum_t \frac{Y_t}{(1+r^*)^{(t-1)}} \equiv W \quad&
+\end{alignat}
+The lagrangian is the same as in (9), which implies for any $t$ in $\llbracket 1, N \rrbracket$  that :
+\begin{equation}{}
+    C_t = \frac{(1+r^*)^{t-1}}{N}W 
+\end{equation}
+\begin{equation}{}
+    TB_t = Y_t - \frac{(1+r^*)^{t-1}}{N} \left[ (1+r_0)B_0 - \sum_i \frac{Y_i}{(1+r^*)^{i-1}} \right]
+\end{equation}
+\end{document}
+
