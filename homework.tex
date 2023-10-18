@@ -64,11 +64,11 @@ Rearranging (7) :
 \begin{alignat}{2}
     C_1 + \frac{C_2}{1+r^*} + \frac{C_3}{(1+r^*)^2} &= (1+r_0)B_0 + Y_1 + \frac{Y_2}{1+r^*} + \frac{Y_3}{(1+r^*)^2} \equiv W \quad&
 \end{alignat}
-We define $W$ the intertemporal wealth of households. $W$ is exogenous in this model since $Y_t, r_0, r^*$ and $B_0$ are exogenous.
+Where $W$ denotes the intertemporal wealth of households. $W$ is exogenous in this model since $Y_t, r_0, r^*$ and $B_0$ are exogenous.
 \subsection{}
 Households want to maximize their lifetime utiliy subject to the IBC. We thus form the lagrangian of this maximization problem :
 \begin{alignat}{2}
-    \mathcal{L}(C,\lambda) &= U(C) + \lambda(W - \sum_t \frac{C_t}{(1+r^*)^{t-1}}) \quad&
+    \mathcal{L}(C,\lambda) &= U(C) + \lambda \left[ W - \sum_t \frac{C_t}{(1+r^*)^{t-1}} \right] \quad&
 \end{alignat}
 Where $C$ is the vector of consumption $(C_1, C_2, C_3)$, $U$ the lifetime utility function, and where $\displaystyle\sum_t$ denotes the sum over all periods.\newline
 The first order conditions imply, for $t \in$ $\{ 1, 2, 3\}$ :
@@ -117,7 +117,7 @@ The trade balance in positively impacted by a permanent endowment shock but with
 \end{alignat*}
 A permanent shock will increase consumption by a one-one coefficient at the first order with respect to $r^*$. 
 \subsection{}
-The way we wrote our results very much suggests the general form of consumption in a N-period economy.
+The way results were written so far very much suggests the general form of consumption in a N-period economy. The transversality condition writes $B_N = 0$.
 In that case the intertemporal IBC writes :
 \begin{alignat}{2}
     \sum_{t} \frac{C_t}{(1+r^*)^{(t-1)}} &= (1+r_0)B_0 + \sum_t \frac{Y_t}{(1+r^*)^{(t-1)}} \equiv W \quad&
@@ -128,6 +128,78 @@ The lagrangian is the same as in (9), which implies for any $t$ in $\llbracket 1
 \end{equation}
 \begin{equation}{}
     TB_t = Y_t - \frac{(1+r^*)^{t-1}}{N} \left[ (1+r_0)B_0 - \sum_i \frac{Y_i}{(1+r^*)^{i-1}} \right]
+    \label{tb_t}
 \end{equation}
+One is now able to redo question 1.5 and 1.6.\newline
+\subsubsection*{1.5 bis}
+Deriving \eqref{tb_t} for a positive endowment shock $\Delta Y_1$:
+\begin{alignat*}{2}
+    \Delta CA_1 = \Delta TB_1 &= \Delta Y_1 - \frac{1}{N} \Delta Y_1 \quad&\\
+    &= \left[ 1 - \frac{1}{N}\right] \Delta Y_1 > 0 \quad&
+    \label{Delta_tb}
+\end{alignat*}
+The trade balance in period 1 is positively impacted by a positive endowment shock in period 1. The variation in consumption writes :
+\begin{alignat*}{2}
+    \Delta C_1 &= \Delta Y_1 - \Delta TB_1 \quad&\\
+    &= \frac{1}{N} \Delta Y_1 > 0 \quad&
+\end{alignat*}
+Consumption is also positively impacted by this transitory shock on endowment.
+\subsubsection*{1.6 bis}
+In a permanent shock situation, one can derive \eqref{tb_t} :
+\begin{alignat*}{2}
+    \Delta CA_1 = \Delta TB_1 &= \Delta Y \left[N - \sum_t \frac{1}{(1+r^*)^{t-1}} \right]\quad&\\
+    &= \Delta Y \left[N - \sum_t \Big(1 - (t-1)r^* + o(r^*) \Big)\right] \quad&\\
+    &= \Delta Y \left[(N-1)N r^* + o(r^*) \right]\quad&
+\end{alignat*}
+As before, consumption will be negligible if we consider that $N$ is pegged and that $r^*$ is arbitrarily close to zero. But here we begin to see that if $N$ tends to infinity, the trade balance will become arbitrarily large, a consequence of the fact that, in the infinite horizon frame work, the transversality condition writes $\lim_{N \to +\infty} \mathbb{E}(\frac{U(C_N)}{(1+r^*)^N})$, which is violated in this exercise.
+\subsection{}
+The lifetime utiliy function now becomes :
+\begin{equation}
+    U(C) = \sum_t \beta^{t-1} \ln C_t
+\end{equation}
+The IBC is identical as before, thus the lagrangian of this maximization problems writes :
+\begin{equation}
+    \mathcal{L}(C,\lambda) = U(C) + \lambda \left[ W - \sum_t \frac{C_t}{(1+r^*)^{t-1}} \right]
+\end{equation}
+The first order conditions imply, for $t \in \llbracket 1, N \rrbracket$ :
+\begin{alignat*}{2}
+    \frac{\partial\mathcal{L}}{\partial C_t} (C,\lambda) = 0 &\iff C_t = \frac{\beta^{t-1}(1+r^*)^{t-1}}{\lambda} = \frac{1}{\lambda}  \quad&
+\end{alignat*}
+Inserting the expressions for $C_t$ in the IBC implies :
+\begin{alignat}{2}
+    \lambda W = \sum_t \frac{1}{(1+r^*)^{t-1}} = \frac{(1+r^*)^N-1}{r^*}  \quad&
+\end{alignat}
+The expression of $\lambda$ one can get from the last expression allows to find the consumption at each period $t$ at the equilibrium :
+\begin{alignat*}{2}
+    C_t =   \frac{r^*}{(1+r^*)^N-1} W \quad&
+\end{alignat*}
+One can notice that the condition $\beta(1+r^*) = 1$ means that the discount factor and the decreasing price of consumption will cancel out, meaning that consumption will be perfectly smoothed over time, put otherwise, $C_t$ does not depend on $t$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \end{document}
+
 
