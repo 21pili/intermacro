@@ -110,7 +110,8 @@ In a similar way, derivating (12) :
 \begin{alignat}{2}
     \Delta TB_1 &= \Delta CA_1 = \Delta Y \left[2 - \frac{1}{1+r^*} - \frac{1}{(1+r^*)^2} \right] = \Delta Y \left[3 r^* + o(r^*)\right]\quad&
 \end{alignat}
-The trade balance in positively impacted by a permanent endowment shock but with an order 1 with respect to $r^*$. The impact will be very small.\newline
+The trade balance in positively impacted by a permanent endowment shock but proportionnaly to $r^*$ at the first order. The impact will be very small.\newline
+Thus permanent and transitory schocks have very different impact on the current account. While the former have a positive impact on the current account, the latter has almost no impact on it whatsoever. 
 \begin{alignat*}{2}
     \Delta C_1 &= \Delta Y - \Delta TB_1 \quad&\\
     &= \Delta Y \left[1 - 3 r^* + o(r^*)\right]\quad&\\
@@ -151,7 +152,7 @@ In a permanent shock situation, one can derive \eqref{tb_t} :
     &= \Delta Y \left[N - \sum_t \Big(1 - (t-1)r^* + o(r^*) \Big)\right] \quad&\\
     &= \Delta Y \left[(N-1)N r^* + o(r^*) \right]\quad&
 \end{alignat*}
-As before, consumption will be negligible if we consider that $N$ is pegged and that $r^*$ is arbitrarily close to zero. But here we begin to see that if $N$ tends to infinity, the trade balance will become arbitrarily large, a consequence of the fact that, in the infinite horizon frame work, the transversality condition writes $\lim_{N \to +\infty} \mathbb{E}(\frac{U(C_N)}{(1+r^*)^N})$, which is violated in this exercise.
+As before, consumption will be negligible if we consider that $N$ is pegged and that $r^*$ is arbitrarily close to zero.
 \subsection{}
 The lifetime utiliy function now becomes :
 \begin{equation}
@@ -170,10 +171,38 @@ Inserting the expressions for $C_t$ in the IBC implies :
     \lambda W = \sum_t \frac{1}{(1+r^*)^{t-1}} = \frac{(1+r^*)^N-1}{r^*}  \quad&
 \end{alignat}
 The expression of $\lambda$ one can get from the last expression allows to find the consumption at each period $t$ at the equilibrium :
-\begin{alignat*}{2}
+\begin{alignat}{2}
     C_t =   \frac{r^*}{(1+r^*)^N-1} W \quad&
+    \label{c_t}
+\end{alignat}
+One can notice that the condition $\beta(1+r^*) = 1$ means that the discount factor and the decreasing price of consumption will cancel out, meaning that consumption will be perfectly smoothed over time, put otherwise, $C_t$ does not depend on $t$.\newline
+Let $\rho$ denote the ratio $\displaystyle \frac{r^*}{(1+r^*)^N-1}$.
+\subsubsection*{1.5 ter} 
+Derivating \eqref{c_t} for $t=1$, for a transitory endowment shock $\Delta Y_1$ :
+\begin{alignat*}{2}
+    \Delta C_1 &=   \rho \Delta W \quad&\\
+    &=   \rho \Delta Y_1 \quad&
 \end{alignat*}
-One can notice that the condition $\beta(1+r^*) = 1$ means that the discount factor and the decreasing price of consumption will cancel out, meaning that consumption will be perfectly smoothed over time, put otherwise, $C_t$ does not depend on $t$.
+Which implies :
+\begin{alignat*}{2}
+    \Delta CA_1 = \Delta TB_1 &= \Delta Y_1 - \Delta C_1 \quad&\\
+    &=   (1 - \rho) \Delta Y_1 \quad&
+\end{alignat*}
+If $r^*$ is small enough, one can show that $\rho \approx \frac{1}{N}$. Those results are thus very similar to the previous case.
+\subsubsection*{1.6 ter} 
+Derivating \eqref{c_t} for $t=1$, for a permanent endowment shock $\Delta Y$ and recalling the definition of $\rho$ :
+\begin{alignat*}{2}
+    \Delta C_1 &=   \rho \Delta W \quad&\\
+    &= \rho \Delta Y \sum_t \frac{1}{(1+r^*)^{t-1}}\\
+    &= \Delta Y
+\end{alignat*}
+Which implies :
+\begin{alignat*}{2}
+    \Delta CA_1 = \Delta TB_1 &= \Delta Y - \Delta C_1 \quad&\\
+    &=   0
+\end{alignat*}
+In the N-period, discounted lifetime utility framework, the current account cannot be affected at all by a permanent endowment shock.
+\newpage
 
 
 
@@ -182,6 +211,59 @@ One can notice that the condition $\beta(1+r^*) = 1$ means that the discount fac
 
 
 
+
+
+\section{Imperfect Capital Mobility and Crowding Out}
+The situation described in this exercise can be summarized by the following equations :
+\subsubsection*{Households}
+The budget constraints at each period writes :
+\begin{equation}
+    C_1 + B_1^h = Y_1 - T_1
+\end{equation}
+\begin{equation}
+    C_2  = \Pi_2 + (1+r_1) B_1^h - T_2
+\end{equation}
+Which implies the IBC for households :
+\begin{equation}
+    C_1 + \frac{C_2}{1+r_1}  = Y_1 - T_1 + \frac{\Pi_2 - T_2}{1+r_1} \equiv W^h
+\end{equation}
+Households want to maximize their utiliy subject to the IBC, which writes :
+\begin{equation}
+    U(C_1)  = \ln(C_1) + \beta \ln\Big((1+r_1)(W^h-C_1)\Big)
+\end{equation}
+The first order condition writes :
+\begin{equation}
+    C_1  = \frac{C_2}{\beta(1+r_1)}
+    \label{2.c_1}
+\end{equation}
+Inserting \eqref{2.c_1} into the IBC yields :
+\begin{alignat}{2}
+    C_1  &= \frac{1}{1 + \beta} W^h\quad&\\
+    C_2  &= \frac{\beta}{\beta + 1} (1+r_1) W^h \quad&
+\end{alignat}
+\subsubsection*{Firms}
+Firms ought to maximize their profit in period 2, which is the difference between the income from production and the cost of borrowing $I_1$ : 
+\begin{equation}
+    \Pi_2(I_1, r_1)  = 6\sqrt{I_1} - (1+r_1) I_1
+\end{equation}
+One must notice that firms take $r_1$ as given as they do not decide on it.\newline
+The first order condition from this maximization problem yields :
+\begin{equation}
+    I_1  = \frac{9}{(1+r_1)^2}
+\end{equation}
+\subsubsection*{Government}
+The budget constraints at each period writes :
+\begin{equation}
+    G_1 + B_1^g = T_1
+\end{equation}
+\begin{equation}
+    G_2  = T_2 + (1+r_1) B_1^g
+\end{equation}
+Which implies the IBC for households :
+\begin{equation}
+    G_1 + \frac{G_2}{1+r_1}  = T_1 + \frac{T_2}{1+r_1} \equiv W^g
+\end{equation}
+One must notice that consumption actually does not depend on the path $(T_1, T_2)$ but only on the government spendings, $(G_1, G_2)$.
 
 
 
