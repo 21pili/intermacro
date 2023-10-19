@@ -11,8 +11,11 @@
 \usepackage{forest}
 \usepackage{tikz}
 \usepackage{stmaryrd}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{float}
 
-\geometry{top=1in, bottom=1in, left=1in, right=1in}
+\geometry{top=4cm, bottom=4cm, left=4cm, right=4cm}
 \pagestyle{fancy}
 \fancyhf{}
 \rhead{Pierre Pili}
@@ -263,25 +266,132 @@ Which implies the IBC for households :
 \begin{equation}
     G_1 + \frac{G_2}{1+r_1}  = T_1 + \frac{T_2}{1+r_1} \equiv W^g
 \end{equation}
-One must notice that consumption actually does not depend on the path $(T_1, T_2)$ but only on the government spendings, $(G_1, G_2)$.
+One must notice that consumption actually does not depend on the path $(T_1, T_2)$ but only on the government spendings, $(G_1, G_2)$, indeed the intertemporal wealth of housholds writes :
+\begin{equation}
+    W^h  = Y_1 - G_1 + \frac{\Pi_2 - G_2}{1+r_1}
+\end{equation}
+To find the net foreign asset position, one can compute the trade balance at period 1 since $B_0 = 0$.\newline
+Thus, $B_1 - B_0 = B_1 = TB_1 = Y_1 - G_1 - C_1 - I_1$\newline
+To answer all the following, I used the following script :
+\begin{lstlisting}[language=Python, label=python_code]
+    import numpy as np
+    import matplotlib.pyplot as plt
+    
+    #CONSTANTES
+    beta = 0.96
+    rstar = 0.08
+    p = 0.02
+    Y = 20
+
+    #FONCTIONS
+
+    def I1(r1):
+        return 9 * 1/(1+r1)**2
+
+    def Pi(r1, I1):
+        return 6 * np.sqrt(I1) - (1+r1) * I1
+    
+    def Wh(r1, I1, G):
+        return Y - G[0] + (Pi(r1, I1) - G[1]) / (1 + r1)
+    
+    def B1(r1, G):
+        f = 1 / (1 + beta)
+        I = I1(r1)
+        C1 = f * Wh(r1, I, G)
+        return Y - G[0] - C1 - I
+\end{lstlisting}
+\subsection{}
+Running the previous code with $G_1 = 1$ and $G_2 = 7$ and both possible interest rates :
+\begin{lstlisting}[language=Python, label=python_code]
+    #QUESTION 1
+    G = [1,7]
+    Bstar = B1(rstar,G)
+    Bp = B1(rstar+p,G)
+    print("Bstar=",Bstar)
+    print("Bp=",Bp)
+
+[1] Bstar = 0.9601914840010082
+    Bp = 1.3199527744982298
+\end{lstlisting}
+In both situation, the trade balance is positive, thus $r^1 = r^*$ and one can compute :
+\begin{alignat}{2}
+    CA_1  = TB_1 &\approx 0.96&\\
+    I_1 &\approx 7.72
+\end{alignat}
+\subsection{}
+Running the previous code with $G_1 = 2$ and $G_2 = 7$ and both possible interest rates :
+\begin{lstlisting}[language=Python, label=python_code]
+    #QUESTION 2
+    G = [2,7]
+    Bstar = B1(rstar,G)
+    Bp = B1(rstar+p,G)
+    print("Bstar=",Bstar)
+    print("Bp=",Bp)
+
+[2] Bstar = 0.47039556563366247
+    Bp = 0.8301568561308823
+\end{lstlisting}
+In both situation, the trade balance is positive, thus $r^1 = r^*$ and one can compute :
+\begin{alignat}{2}
+    CA_1  = TB_1 &\approx 0.47&\\
+    I_1 &\approx 7.72
+\end{alignat}
+At the moment, since $r^1$ is the same as in question 1, governemnent expenditures do not crow out investment.
+\subsection{}
+Running the previous code with $G_1 = 4$ and $G_2 = 7$ and both possible interest rates :
+\begin{lstlisting}[language=Python, label=python_code]
+    #QUESTION 3
+    G = [4,7]
+    Bstar = B1(rstar,G)
+    Bp = B1(rstar+p,G)
+    print("Bstar=",Bstar)
+    print("Bp=",Bp)
+
+[3] Bstar = -0.5091962711010325
+    Bp = -0.14943498060381089
+\end{lstlisting}
+In both situations, the trade balance is negative, thus $r^1 = r^* + p$ and one can compute :
+\begin{alignat}{2}
+    CA_1  = TB_1 &\approx -0.14&\\
+    I_1 &\approx 7.44
+\end{alignat}
+With interest rates being higher, investment decreases, we thus observe a crowding out effect of government spendings in this framework.
+\subsection{}
+Running the previous code with $G_1 = 4$ and $G_2 = 7$ and $p = 0.04$ :
+\begin{lstlisting}[language=Python, label=python_code]
+    #QUESTION 4
+    G = [4, 7]
+    p = 0.04
+    Bstar = B1(rstar, G)
+    Bp = B1(rstar + p, G)
+    print("Bstar=",Bstar)
+    print("Bp=",Bp)
+
+[4] Bstar = -0.5091962711010325
+    Bp = 0.19018117451062366
+\end{lstlisting}
+In this situation, the sign of the trade balance depends on the interest rate. Consider the following results :
+\begin{lstlisting}[language=Python, label=python_code]
+    print(Pi(rstar, I1(rstar)))
+    print(Pi(rstar + p, I1(rstar + p)))
+
+[5] 8.33333333333333
+    8.035714285714283
+\end{lstlisting}
+Firms are better off when they pay interest rate $r^*$ but they deteriorate the trade balance in doing so, resulting in a interest premium. There is no equilibrium in this situation.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{media/profits_wrt_interest_rates.png}
+    \label{fig:mon_graphique}
+\end{figure}
+Consider the previous graph, if interest rates are $0.08$, then firms invest to reach $\Pi_2(0.08)$, but at the cost of the trade balance, meaning the interest will actually be $0.12$, firms will thus invest to reach $\Pi_2(0.12)$, improving the trade balance, thus interest rates will come back to $0.08$, and so on.
+\newpage
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+\section{Interest Rate Uncertainty}
 \end{document}
 
 
