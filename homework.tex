@@ -277,13 +277,13 @@ To answer all the following, I used the following script :
     import numpy as np
     import matplotlib.pyplot as plt
     
-    #CONSTANTES
+    #CONSTANTS
     beta = 0.96
     rstar = 0.08
     p = 0.02
     Y = 20
 
-    #FONCTIONS
+    #FUNCTIONS
 
     def I1(r1):
         return 9 * 1/(1+r1)**2
@@ -391,10 +391,9 @@ Consider the previous graph, if interest rates are $0.08$, then firms invest to 
 
 
 \section{Interest Rate Uncertainty}
-\subsection{}
 In a similar way to the previous exercises, this framework leads to the following IBC for households :
 \begin{alignat}{2}
-    C1 + \frac{C_2}{1+r^*}  = Y + \frac{Y}{1+r^*} = Y\left(\frac{2+r^*}{1+r^*}\right) \equiv W(r^*) &\quad
+    C_1 + \frac{C_2}{1+r^*}  = Y + \frac{Y}{1+r^*} = Y\left(\frac{2+r^*}{1+r^*}\right) \equiv W(r^*) &\quad
 \end{alignat}
 Recall that $B_0^h = B_2^h = 0$.\newline
 Let $U$ denote the lifetime utility function, $U$ writes : 
@@ -403,9 +402,140 @@ Let $U$ denote the lifetime utility function, $U$ writes :
 \end{equation}
 The first order condition of this maximization problem yields :
 \begin{alignat}{2}
-    \frac{1}{C_1}  &= \frac{1}{2}\left[ \frac{1}{W(-\sigma)-C_1} + \frac{1}{W(\sigma)- C_1}  \right]   &\quad\\
-    &= \frac{1}{2}\left[ \frac{1}{W(-\sigma)-C_1} + \frac{1}{W(\sigma)- C_1}  \right]   &\quad
+    \frac{1}{C_1}  &= \frac{1}{2}\left[ \frac{1}{W(-\sigma)-C_1} + \frac{1}{W(\sigma)- C_1}  \right]   &\quad\
+    \label{46}
 \end{alignat}
+We will use later that $C_1 = Y$ is an immediate solution to \eqref{46} for any $\sigma \in [0, 1[$. We denote this property $(*)$. 
+\subsection{}
+Assuming $\sigma = 0$, \eqref{46} becomes :
+\begin{alignat}{2}
+    \frac{1}{C_1}  &= \frac{1}{2Y- C_1}   &\quad\
+    \label{47}
+\end{alignat}
+And then, $C_1 = C_2 = Y$, which is the expected result as $r^*$ is known and equal to zero. In this framework, $CA_1 = TB_1 + r^* B_0 = TB_1 = Y - C_1 = 0$.
+\subsection{}
+In this question, we assume that $\sigma > 0$.\newline 
+The budget constraint for the first period is : 
+$$C_1 + B_1 = Y$$
+For the second period with $r^* = \sigma$ and $r^* = -\sigma$: 
+$$C_2^H = (1+\sigma) B_1 + Y = (2+\sigma)Y - (1+\sigma)C_1$$
+$$C_2^L = (1-\sigma) B_1 + Y = (2-\sigma)Y - (1-\sigma)C_1$$
+\subsection{}
+One can now rewrite \eqref{46} as : 
+\begin{alignat}{2}
+    \frac{1}{C_1}  &= \frac{1}{2}\left[ \frac{1+\sigma}{C_2^H} + \frac{1-\sigma}{C_2^L}  \right]   &\quad\
+\end{alignat}
+\subsection{}
+According to $(*)$, $C_1 = Y$ is a solution to \eqref{46}. \newline
+In addition, let $f$ and $g$ denote :
+\begin{align}
+    f :
+    \begin{cases}
+        \mathbb{R_+^*} &\to \mathbb{R_+^*} \\
+        x &\mapsto \frac{1}{x}
+    \end{cases} &&
+    g :
+    \begin{cases}
+        [0, W(-\sigma)[ &\to \mathbb{R_+^*} \\
+        x &\mapsto \frac{1}{2}\left[ \frac{1}{W(-\sigma)-x} + \frac{1}{W(\sigma)- x}  \right]
+    \end{cases}
+\end{align}
+One can show that :
+\begin{itemize}
+    \item $f$ and $g$ are well defined because $W(-\sigma) \leq W(\sigma)$
+    \item $f$ is strictly decreasing
+    \item $g$ is strictly increasing
+\end{itemize}
+Thus, the solution $C_1 = Y$ is unique.\newline
+The solution is identical to the situation $\sigma = 0$. One explanation could be that the uncertainty is centered around 0. Thus the good outcome ($r^*=\sigma$) would push household to smooth consumption while the other one ($r^*=-\sigma$) would push them to consume more in the first period. Even though consumers are risk averse (concave utility) the wealth effect of a change in interest rates balances risk aversion out.
+\subsection{}
+Let $U$ denote the new lifetime utiliy function, $U$ writes :
+\begin{equation}
+    U(C) = \frac{C_1^{1-\gamma}}{1-\gamma} + \frac{1}{2}\left[  \frac{\Big((1-\sigma)(W(-\sigma)-C_1)\Big)^{1-\gamma}}{1-\gamma} + \frac{\Big((1+\sigma)(W(\sigma)-C_1)\Big)^{1-\gamma}}{1-\gamma}\right] 
+\end{equation}
+The first order condition yields :
+\begin{equation}
+    \frac{1}{C_1^{\gamma}} = \frac{1}{2} \left[ \frac{(1-\sigma)^{1-\gamma}}{\Big(W(-\sigma) - C_1)\Big)^{-\gamma}} + \frac{(1+\sigma)^{1-\gamma}}{\Big(W(\sigma) - C_1)\Big)^{-\gamma}}  \right]
+\end{equation}
+To which $C_1 = Y$ is an immediate solution.
+Adapting the reasoning in 3.4, one can show that this solution is unique and that the results to questions 3.1 to 3.4 are identical to a log utility framework.
+\subsection{}
+In this question, we assume that $Y_1 = 0$ and $Y_2 = Y > 0$ so that the IBC becomes :
+\begin{equation}
+    C_1 + \frac{C_2}{1 + r^*} = \frac{Y}{1 + r^*} \equiv W(r^*)
+\end{equation}
+The FOC yields :
+\begin{alignat}{2}
+    \frac{1}{C_1}  &= \frac{1}{2}\left[ \frac{1}{W(-\sigma)-C_1} + \frac{1}{W(\sigma)- C_1}  \right]   &\quad\
+\end{alignat}
+Assuming $\sigma = 0$ implies that $\displaystyle C_1 = C_2 = \frac{Y}{2} > 0$.\newline
+We also have $\displaystyle CA_1 = TB_1 = Y_1 - C_1 = - \frac{Y}{2} < 0$.\newline
+The agent borrows in the first period to smooth consumption.
+
+
+
+
+\newpage
+\section{Distortionary Taxation}
+\subsection{}
+\subsubsection*{Household}
+The IBC for households writes :
+\begin{equation}
+    (1 + \tau_1)C_1 + \frac{(1+\tau_2)C_2}{1+r^*} = Y_1 - T^L + \frac{Y_2}{1+r^*} \equiv W^h
+\end{equation}
+\subsubsection*{Government}
+The IBC for the government writes :
+\begin{equation}
+    G_1 + \frac{G_2}{1+r^*} = \tau_1 C_1 + T^L + \frac{\tau_2 C_2}{1+r^*}
+\end{equation}
+\subsubsection*{Economy}
+The constraint for the whole economy writes :
+\begin{equation}
+    C_1 + \frac{C_2}{1+r^*} = Y_1 - G_1 + \frac{Y_2 - G_2}{1+r^*} \equiv W
+\end{equation}
+\subsection{}
+The FOC for the household maximization problem yields :
+\begin{equation}
+    \frac{1}{C_1} = \frac{(1 + \tau_1)\beta}{W - (1 + \tau_1)C_1}
+\end{equation}
+Which implies :
+\begin{alignat}{2}
+    C_1 &= \frac{1}{(1+\beta)(1+\tau_1)}W^h &\quad\\
+    C_2 &= \frac{\beta(1+r^*)}{(1+\beta)(1+\tau_2)}W^h &\quad 
+\end{alignat}
+\subsection{}
+Inserting the expressions for $C_1$ and $C_2$ in the intertemporal constraint for the whole economy :
+\begin{equation}
+    \alpha W^h = W
+\end{equation}
+With $\alpha$ denoting :
+\begin{equation}
+    \alpha = \frac{1}{(1+\beta)(1+\tau_1)} + \frac{\beta}{(1+\beta)(1+\tau_2)}
+\end{equation}
+Solving for $T^L$ :
+\begin{equation}
+    T^L = Y_1 + \frac{Y_2}{(1+r^*)} - \frac{W}{\alpha}
+\end{equation}
+Using a python script to make the computation, I find :
+\begin{align*}
+    T^L = 0.76  && \quad
+    C_1 = 8.0 &&\quad
+    C_2 = 7.27 &\quad 
+\end{align*}
+Which implies :
+\begin{align*}
+    TB_1 = Y_1 - C_1 - G_1 = 0 
+\end{align*}
+
+
+
+
+
+
+
+
+
+
 
 \end{document}
 
