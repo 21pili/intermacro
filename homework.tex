@@ -153,7 +153,7 @@ In a permanent shock situation, one can derive \eqref{tb_t} :
 \begin{alignat*}{2}
     \Delta CA_1 = \Delta TB_1 &= \Delta Y \left[N - \sum_t \frac{1}{(1+r^*)^{t-1}} \right]\quad&\\
     &= \Delta Y \left[N - \sum_t \Big(1 - (t-1)r^* + o(r^*) \Big)\right] \quad&\\
-    &= \Delta Y \left[(N-1)N r^* + o(r^*) \right]\quad&
+    &= \Delta Y \left[\frac{(N-1)N}{2} r^* + o(r^*) \right]\quad&
 \end{alignat*}
 As before, consumption will be negligible if we consider that $N$ is pegged and that $r^*$ is arbitrarily close to zero.
 \subsection{}
@@ -381,7 +381,7 @@ In this situation, the sign of the trade balance depends on the interest rate. C
 Firms are better off when they pay interest rate $r^*$ but they deteriorate the trade balance in doing so, resulting in a interest premium. There is no equilibrium in this situation.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{media/profits_wrt_interest_rates.png}
+    \includegraphics[width=0.7\textwidth]{media/output.png}
     \label{fig:mon_graphique}
 \end{figure}
 Consider the previous graph, if interest rates are $0.08$, then firms invest to reach $\Pi_2(0.08)$, but at the cost of the trade balance, meaning the interest rate will actually be $0.12$, firms will thus invest to reach $\Pi_2(0.12)$, improving the trade balance, thus interest rates will come back to $0.08$, and so on.
@@ -471,7 +471,19 @@ The FOC yields :
 Assuming $\sigma = 0$ implies that $\displaystyle C_1 = C_2 = \frac{Y}{2} > 0$.\newline
 We also have $\displaystyle CA_1 = TB_1 = Y_1 - C_1 = - \frac{Y}{2} < 0$.\newline
 The agent borrows in the first period to smooth consumption.
-
+\subsection{}
+In this question, we assume that $Y_1 = Y > 0$ and $Y_2 = 0$ so that the IBC becomes :
+\begin{equation}
+    C_1 + \frac{C_2}{1 + r^*} = Y \equiv W
+\end{equation}
+The intertemporal wealth thus does not depend on interest rate $r^*$.
+The solution to solve then becomes :
+\begin{alignat}{2}
+    \frac{1}{C_1}  &= \frac{1}{Y-C_1}   &\quad\
+\end{alignat}
+Implying that : $C_1 = \displaystyle \frac{Y}{2}$ and $C_2 = (1 + r^*) \displaystyle \frac{Y}{2}$.\newline
+Thus the households purchases $B_1 = \displaystyle \frac{Y}{2}$ of bonds in the first period whatever the value of $\sigma$.\newline
+In this framework, $CA_1 = TB_1 = Y - C_1 = \displaystyle \frac{Y}{2} > 0$, again, whatever the value of $\sigma$.
 
 
 
@@ -526,12 +538,15 @@ Which implies :
 \begin{align*}
     TB_1 = Y_1 - C_1 - G_1 = 0 
 \end{align*}
+\subsection{}
+One can first find the value of $\tau_2$ which verifies (64) under $T^L = 0.76$ and $\tau_1 = 0.1$.
+Solving (64) for $\alpha$ and then solving for $\tau_2$ (an argument of $\alpha$ viewed as a function) :
 
+$$\frac{1}{1+\tau_2} = \frac{W(1+\beta)}{\beta \Big( Y_1 + \displaystyle \frac{Y_2}{1+r^*} \Big) - T^L} - \frac{1}{\beta(1+\tau_1)}$$
 
-
-
-
-
+Using a script, I find $\tau_2 = 0.32$
+Which allow me to rerun my previous code to find : $C_1 = 8.69$, $C_2 = 6.58$ and $TB_1 = -0.69$\newline
+In the initial situation utiliy was $U_i = 3.88$ while the final utility is $U_f = 3.87$. Thus the new tax reform is not increasing utility for households.
 
 
 
